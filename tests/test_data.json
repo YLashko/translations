@@ -1,0 +1,30 @@
+{
+    "en": {
+        "translation_1": {
+            "phrase": "Result {a} {a} phrase {b} en",
+            "variables": ["a", "b"]
+        },
+
+        "translation_2": {
+            "phrase": "Result phrase {ex2} en 2",
+            "variables": ["ex2"]
+        },
+
+        "translation_3": {
+            "phrase": "Result phrase {a} en 3",
+            "variables": ["a"]
+        }
+    },
+
+    "ru": {
+        "translation_1": {
+            "phrase": "Result {a} {a} phrase {b} ru",
+            "variables": ["a", "b"]
+        },
+
+        "translation_2": {
+            "phrase": "Result phrase {ex2} ru 2",
+            "variables": ["ex2"]
+        }
+    }
+}
