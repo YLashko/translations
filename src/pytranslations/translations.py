@@ -15,7 +15,7 @@ class Translations:
     def __init__(self) -> None:
         self.language_codes: list[str] = []
         self.users_languages: dict = {}
-        self.default_language: str = ""
+        self.default_language: str | None = None
         self.translations: dict = {}
     
 
@@ -66,7 +66,7 @@ class Translations:
 
     def t_lang(self, language: str, phrase: str, *args):
         """
-            Translate using a language specified for user_id
+            Translate using a language key
         """
         if language not in self.language_codes:
             raise NoLanguageDataError(f"There is no translations for language '{language}'")
@@ -120,12 +120,15 @@ class Translations:
 
         if len(self.language_codes) == 0:
             raise InvalidSetupError("You must first set the translations data! Use get_translations_from_json()")
-        if language not in self.language_codes:
-            raise NoLanguageDataError(f"Can not set language to {language}: this language is not on the available languages list")
         
         if language:
+            if language not in self.language_codes:
+                raise NoLanguageDataError(f"Can not set language to {language}: this language is not on the available languages list")
             self.users_languages[user_id] = language
-    
+        else:
+            if not self.default_language:
+                raise InvalidSetupError(f"You need to set the default language first!")
+            self.users_languages[user_id] = self.default_language    
 
     def set_users_languages(self, language_dict): 
         self.users_languages = language_dict

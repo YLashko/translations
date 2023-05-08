@@ -1,8 +1,8 @@
-from translations import translations
+from pytranslations import translations
 
 def test_no_users():
     tr = translations.Translations()
-    with open("tests/test_data.json", 'r') as f:
+    with open("src/tests/test_data.json", 'r') as f:
         tr.get_translations_from_json(f.read())
     tr.default_language = "en"
     assert tr.t_lang("ru", "translation_1", "abc", "cde") == "Result abc abc phrase cde ru"
@@ -10,7 +10,7 @@ def test_no_users():
 
 def test_users():
     tr = translations.Translations()
-    with open("tests/test_data.json", 'r') as f:
+    with open("src/tests/test_data.json", 'r') as f:
         tr.get_translations_from_json(f.read())
     tr.default_language = "en"
     tr.add_user("1", "en")
